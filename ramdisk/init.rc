@@ -37,7 +37,7 @@ on init
 
 sysclktz 0
 
-loglevel 3
+loglevel 8
 
 # setup the global environment
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
@@ -307,7 +307,7 @@ on post-fs-data
     #setprop vold.post_fs_data_done 1
 
 # Include extra init file
-    import /init.pa.rc
+    import /init.slim.rc
 
 on boot
     # interactive governor
@@ -689,6 +689,7 @@ service keystore /system/bin/keystore /data/misc/keystore
     class main
     user keystore
     group keystore drmrpc
+    socket keystore stream 666
 
 service dumpstate /system/bin/dumpstate -s
     class main
