@@ -31,6 +31,6 @@ def FullOTA_Assertions(info):
          'getprop("ro.bootloader") == "1.36.0000" || '
          'getprop("ro.bootloader") == "1.39.0000" || '
          'getprop("ro.bootloader") == "1.72.0000"'|| '
-         'getprop("ro.bootloader") == "1.730000"'
+         'getprop("ro.bootloader") == "1.73.0000"'
          ');'))
 
