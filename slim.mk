@@ -7,7 +7,7 @@ PRODUCT_RELEASE_NAME := endeavoru
 # Preload bootanimation
 TARGET_BOOTANIMATION_PRELOAD := true
 PRODUCT_COPY_FILES += \
-    vendor/slim/prebuilt/hdpi/bootanimation.zip:system/media/bootanimation.zip
+    vendor/slim/prebuilt/common/bootanimation/720.zip:system/media/bootanimation.zip
 
 # Inherit some common Slim stuff.
 $(call inherit-product, vendor/slim/config/common_full_phone.mk)
