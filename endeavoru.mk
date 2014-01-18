@@ -27,6 +27,26 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-data-only=1
 
+# Increase UMS speed
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vold.umsdirtyratio=50
+
+# Override phone-xhdpi-1024-dalvik-heap.mk setting
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapgrowthlimit=96m
+
+# Smoother window manager experience.
+PRODUCT_PROPERTY_OVERRIDES += \
+    windowsmgr.max_events_per_sec = 240 #300
+
+# Old RIL features
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.ril.v3=signalstrength,skipbrokendatacall
+
+# force gpu rendering(2d drawing) [Nvidia setting - libhtc-opt2.so]
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.ui.hw=true
+
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -34,16 +54,11 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/fstab.endeavoru:root/fstab.endeavoru \
     $(LOCAL_PATH)/ramdisk/init.endeavoru.rc:root/init.endeavoru.rc \
+    $(LOCAL_PATH)/ramdisk/init.endeavoru.htc.rc:root/init.endeavoru.htc.rc \
+    $(LOCAL_PATH)/ramdisk/init.endeavoru.common.rc:root/init.endeavoru.common.rc \
     $(LOCAL_PATH)/ramdisk/init.endeavoru.usb.rc:root/init.endeavoru.usb.rc \
-    $(LOCAL_PATH)/ramdisk/init.rc:root/init.rc \
+    $(LOCAL_PATH)/ramdisk/init.endeavoru.cm.rc:root/init.endeavoru.cm.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.endeavoru.rc:root/ueventd.endeavoru.rc
-
-PRODUCT_COPY_FILES += $(call add-to-product-copy-files-if-exists,\
-packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml)
-
-# bluetooth config
-PRODUCT_COPY_FILES += \
-    system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf
 
 # configs
 PRODUCT_COPY_FILES += \
@@ -58,11 +73,12 @@ PRODUCT_PACKAGES += \
     librs_jni
 
 # Bluetooth tools
+$(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/prebuilt/bin/load-bt.sh:system/bin/load-bt.sh
 PRODUCT_PACKAGES += \
     l2ping \
     hciconfig \
     hcitool \
-    libbt-vendor
 
 # audio packages
 PRODUCT_PACKAGES += \
@@ -71,17 +87,23 @@ PRODUCT_PACKAGES += \
     tinycap
 
 # Wi-Fi
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/prebuilt/bin/wifi_calibration.sh:system/bin/wifi_calibration.sh
+$(call inherit-product, hardware/ti/wlan/mac80211/wl128x-wlan-products.mk)
+PRODUCT_COPY_FILES +=
+PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/prebuilt/bin/wifi_calibration.sh:system/bin/wifi_calibration.sh \
+     $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
     hostapd.conf \
     wifical.sh \
-    TQS_D_1.7.ini \
+    128x_TQS_D_1.7.ini \
     calibrator \
     crda \
     regulatory.bin \
     wlconf
-
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0 \
 $(call inherit-product, vendor/htc/endeavoru/endeavoru-vendor.mk)
 
 # common tegra3-HOX+ configs

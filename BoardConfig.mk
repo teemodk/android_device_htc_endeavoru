@@ -23,9 +23,6 @@
 # inherit from tegra3-common
 -include device/htc/tegra3-common/BoardConfigCommon.mk
 
-#custom init rc
-TARGET_PROVIDES_INIT_RC := true
-
 # Boot/Recovery image settings
 BOARD_KERNEL_CMDLINE := 
 BOARD_KERNEL_PAGESIZE := 2048
@@ -57,6 +54,9 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 
 # Wifi related defines
 USES_TI_MAC80211 := true
+# Required for newer wpa_supplicant_8_ti versions to fix tethering
+BOARD_WIFI_SKIP_CAPABILITIES := true
+
 ifdef USES_TI_MAC80211
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 WPA_SUPPLICANT_VERSION           := VER_0_8_X_TI
@@ -97,15 +97,16 @@ NEED_WORKAROUND_CORTEX_A9_745320 := true
 BOARD_USES_GENERIC_INVENSENSE := false
 
 # Bluetooth
+BOARD_HAVE_BLUETOOTH_TI := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/endeavoru/bluetooth
 
 # Recovery
-TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/endeavoru/prebuilt/recovery_kernel
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
-BOARD_UMS_LUNFILE := "/sys/devices/platform/fsl-tegra-udc/gadget/lun0/file"
 BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_SWIPE := true
 TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
 RECOVERY_FSTAB_VERSION := 2
+BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru
