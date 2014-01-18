@@ -197,9 +197,6 @@
     <!-- Enables or disables fading edges when marquee is enabled in TextView. -->
     <bool name="config_ui_enableFadingMarquee">true</bool>
 
-    <!-- Disable search/ assist button menu entry in rebinding section. -->
-    <integer name="config_deviceHardwareKeys">19</integer>
-
     <!-- Control the behavior when the user long presses the home button.
             0 - Nothing
             1 - Menu key
