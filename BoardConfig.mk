@@ -127,12 +127,15 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_SEPOLICY_UNION += \
     file_contexts \
+    genfs_contexts \
     app.te \
     device.te \
     drmserver.te \
     file.te \
+    init_shell.te \
     mediaserver.te \
+    rild.te \
+    sensors.te \
     surfaceflinger.te \
     system_app.te \
     zygote.te
-
