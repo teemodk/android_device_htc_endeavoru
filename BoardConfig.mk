@@ -113,6 +113,16 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru
 
 # Device specific SELinux policies
 BOARD_SEPOLICY_DIRS += \
-    device/htc/endeavoru/selinux
+    device/htc/endeavoru/sepolicy
 
-#BOARD_SEPOLICY_UNION +=
+BOARD_SEPOLICY_UNION += \
+    file_contexts \
+    app.te \
+    device.te \
+    drmserver.te \
+    file.te \
+    mediaserver.te \
+    surfaceflinger.te \
+    system_app.te \
+    zygote.te
+
