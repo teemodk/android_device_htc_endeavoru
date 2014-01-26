@@ -132,10 +132,6 @@ BOARD_SEPOLICY_UNION += \
     device.te \
     drmserver.te \
     file.te \
-    init_shell.te \
     mediaserver.te \
-    rild.te \
-    sensors.te \
-    surfaceflinger.te \
     system_app.te \
     zygote.te
