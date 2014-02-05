@@ -122,7 +122,9 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/f_mass_storage/lun0/f
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru
 
 # Device specific SELinux policies
-# BOARD_SEPOLICY_DIRS += \
-#     device/htc/endeavoru/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/htc/endeavoru/sepolicy
 
-# BOARD_SEPOLICY_UNION += \
+BOARD_SEPOLICY_UNION += \
+#    device.te  \
+    file_contexts
