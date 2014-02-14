@@ -50,7 +50,7 @@ on early-init
 
 on boot
     # bluetooth
-    start load_bt
+    exec /system/bin/logwrapper /system/bin/load-bt.sh
     insmod /system/lib/modules/uhid.ko
 
 # Replaces HTC's upd_nvs_wlan0 solution with our own
@@ -71,8 +71,8 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk
     disabled
 
 # /dev/tihci <-> /dev/hci_tty creation
-service load_bt /system/bin/logwrapper /system/bin/load-bt.sh
-    disabled
-    user root
-    group root
-    oneshot
+# service load_bt /system/bin/logwrapper /system/bin/load-bt.sh
+#    disabled
+#    user root
+#    group root
+#    oneshot
