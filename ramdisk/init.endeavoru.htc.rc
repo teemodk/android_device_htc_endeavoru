@@ -156,12 +156,12 @@ service htc-ril-daemon /system/bin/rild
     user root
     group radio cache inet misc audio log
 
-service hdmid /system/bin/hdmid
-    socket displayd stream 0660 root system graphics
-    disabled
+#service hdmid /system/bin/hdmid
+#    socket displayd stream 0660 root system graphics
+#    disabled
 
-on property:ro.hdmi.enable=true
-    start hdmid
+#on property:ro.hdmi.enable=true
+#    start hdmid
 
 #BOARD_HAVE_BLUETOOTH_BLUEZ start
 service dbus /system/bin/dbus-daemon --system --nofork
