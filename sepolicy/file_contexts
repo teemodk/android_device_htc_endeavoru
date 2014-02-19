@@ -1,0 +1,2 @@
+/dev/knvmap u:object_r:knv_device:s0
+/dev/tegra-throughput u:object_r:nvhost_writable_device:s0
