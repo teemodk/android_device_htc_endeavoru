@@ -126,4 +126,9 @@ BOARD_SEPOLICY_DIRS += \
     device/htc/endeavoru/sepolicy
 
 BOARD_SEPOLICY_UNION += \
+     device.te          \
+     file_contexts      \
+     drmserver.te       \
+     fixme.te           \
+     healthd.te         \
      zygote.te
