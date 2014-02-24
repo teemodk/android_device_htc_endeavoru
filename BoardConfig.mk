@@ -32,17 +32,17 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Partitions Info
 #cat /proc/emmc
 #dev:        size     erasesize name
-#mmcblk0p5: 00800000 00001000 "recovery"
-#mmcblk0p4: 00800000 00001000 "boot"
+#mmcblk0p5:  00800000 00001000 "recovery"
+#mmcblk0p4:  00800000 00001000 "boot"
 #mmcblk0p12: 50000000 00001000 "system"
-#mmcblk0p13: 14000000 00001000 "cache"
+#mmcblk0p13: 14000000 00001000 "cache"      - unused
 #mmcblk0p17: 00200000 00001000 "misc"
-#mmcblk0p1: 00600000 00001000 "wlan"
-#mmcblk0p2: 00200000 00001000 "WDM"
+#mmcblk0p1:  00600000 00001000 "wlan"
+#mmcblk0p2:  00200000 00001000 "WDM"
 #mmcblk0p20: 00200000 00001000 "pdata"
-#mmcblk0p3: 00600000 00001000 "radiocab"
-#mmcblk0p14: 650000000 00001000 "internalsd"
-#mmcblk0p15: 89400000 00001000 "userdata"
+#mmcblk0p3:  00600000 00001000 "radiocab"
+#mmcblk0p14:650000000 00001000 "internalsd" - is now /data, including emulated sdcard
+#mmcblk0p15: 89400000 00001000 "userdata"   - is now /cache
 #mmcblk0p19: 01600000 00001000 "devlog"
 #mmcblk0p16: 00200000 00001000 "extra"
 
@@ -71,7 +71,7 @@ endif
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/htc/endeavoru
-TARGET_KERNEL_CONFIG := cyanogenmod_endeavoru_defconfig
+TARGET_KERNEL_CONFIG := slimkat_endeavoru_defconfig
 
 # Building wifi modules
 TARGET_MODULES_SOURCE := "kernel/htc/endeavoru/drivers/net/wireless/compat-wireless_R5.SP2.03"
@@ -111,9 +111,17 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/endeavoru/bluetooth
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
-TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
-RECOVERY_FSTAB_VERSION := 2
+TARGET_RECOVERY_FSTAB := device/htc/endeavoru/recovery/root/twrp.fstab
+#RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_LARGE_FILESYSTEM := true
+#TWRP config:
+DEVICE_RESOLUTION := 720x1280
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_INCLUDE_JB_CRYPTO := true
+TW_BRIGHTNESS_PATH := /sys/devices/platform/tegra-pwm-bl/backlight/tegra-pwm-bl/brightness
+TW_MAX_BRIGHTNESS := 255
+TW_NO_SCREEN_BLANK := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
 
 # UMS
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/f_mass_storage/lun0/file"
