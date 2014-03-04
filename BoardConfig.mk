@@ -32,19 +32,19 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Partitions Info
 #cat /proc/emmc
 #dev:        size     erasesize name
-#mmcblk0p5:  00800000 00001000 "recovery"
-#mmcblk0p4:  00800000 00001000 "boot"
-#mmcblk0p12: 50000000 00001000 "system"
-#mmcblk0p13: 14000000 00001000 "cache"      - unused
-#mmcblk0p17: 00200000 00001000 "misc"
 #mmcblk0p1:  00600000 00001000 "wlan"
 #mmcblk0p2:  00200000 00001000 "WDM"
-#mmcblk0p20: 00200000 00001000 "pdata"
 #mmcblk0p3:  00600000 00001000 "radiocab"
+#mmcblk0p4:  00800000 00001000 "boot"
+#mmcblk0p5:  00800000 00001000 "recovery"
+#mmcblk0p12: 50000000 00001000 "system"
+#mmcblk0p13: 14000000 00001000 "cache"      - unused
 #mmcblk0p14:650000000 00001000 "internalsd" - is now /data, including emulated sdcard
 #mmcblk0p15: 89400000 00001000 "userdata"   - is now /cache
-#mmcblk0p19: 01600000 00001000 "devlog"
 #mmcblk0p16: 00200000 00001000 "extra"
+#mmcblk0p17: 00200000 00001000 "misc"
+#mmcblk0p19: 01600000 00001000 "devlog"
+#mmcblk0p20: 00200000 00001000 "pdata"
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
@@ -114,14 +114,23 @@ BOARD_RECOVERY_SWIPE := true
 TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
 #RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_LARGE_FILESYSTEM := true
-#TWRP config:
+
+#TWRP CONFIG:
 DEVICE_RESOLUTION := 720x1280
+# this enables proper handling of /data/media on devices that have this folder for storage
+RECOVERY_SDCARD_ON_DATA := true
+# disables things like sdcard partitioning
 BOARD_HAS_NO_REAL_SDCARD := true
+# removes the USB storage button on devices that don't support USB storage
+TW_NO_USB_STORAGE := true
 TW_INCLUDE_JB_CRYPTO := true
 TW_BRIGHTNESS_PATH := /sys/devices/platform/tegra-pwm-bl/backlight/tegra-pwm-bl/brightness
 TW_MAX_BRIGHTNESS := 255
 TW_NO_SCREEN_BLANK := true
+TW_NEVER_UNMOUNT_SYSTEM := true
+# fixes slanty looking graphics on some devices
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
+HAVE_SELINUX := true
 
 # UMS
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/f_mass_storage/lun0/file"
