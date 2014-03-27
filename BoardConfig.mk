@@ -144,6 +144,7 @@ BOARD_SEPOLICY_DIRS += \
     device/htc/endeavoru/sepolicy
 
 BOARD_SEPOLICY_UNION += \
+     app.te             \
      device.te          \
      file_contexts      \
      drmserver.te       \
