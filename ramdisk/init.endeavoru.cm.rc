@@ -59,9 +59,9 @@ service wifi_calib /system/bin/wifi_calibration.sh
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
-    class late_start
-    disabled
+# service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
+#    class late_start
+#    disabled
 
 # /dev/tihci <-> /dev/hci_tty creation
 service load_bt /system/bin/logwrapper /system/bin/load-bt.sh
