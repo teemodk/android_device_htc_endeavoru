@@ -1,2 +1,2 @@
 # Fix zygote sigchld denials.
-allow domain init_shell:process sigchld;
+allow zygote init_shell:process sigchld;

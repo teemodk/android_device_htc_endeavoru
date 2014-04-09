@@ -32,19 +32,19 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Partitions Info
 #cat /proc/emmc
 #dev:        size     erasesize name
-#mmcblk0p5: 00800000 00001000 "recovery"
-#mmcblk0p4: 00800000 00001000 "boot"
-#mmcblk0p12: 50000000 00001000 "system"
-#mmcblk0p13: 14000000 00001000 "cache"
-#mmcblk0p17: 00200000 00001000 "misc"
-#mmcblk0p1: 00600000 00001000 "wlan"
-#mmcblk0p2: 00200000 00001000 "WDM"
-#mmcblk0p20: 00200000 00001000 "pdata"
-#mmcblk0p3: 00600000 00001000 "radiocab"
-#mmcblk0p14: 650000000 00001000 "internalsd"
-#mmcblk0p15: 89400000 00001000 "userdata"
-#mmcblk0p19: 01600000 00001000 "devlog"
-#mmcblk0p16: 00200000 00001000 "extra"
+#mmcblk0p5:  00800000  00001000 "recovery"
+#mmcblk0p4:  00800000  00001000 "boot"
+#mmcblk0p12: 50000000  00001000 "system"
+#mmcblk0p13: 14000000  00001000 "cache"
+#mmcblk0p17: 00200000  00001000 "misc"
+#mmcblk0p1:  00600000  00001000 "wlan"
+#mmcblk0p2:  00200000  00001000 "WDM"
+#mmcblk0p20: 00200000  00001000 "pdata"
+#mmcblk0p3:  00600000  00001000 "radiocab"
+#mmcblk0p14:650000000  00001000 "internalsd"
+#mmcblk0p15: 89400000  00001000 "userdata"
+#mmcblk0p19: 01600000  00001000 "devlog"
+#mmcblk0p16: 00200000  00001000 "extra"
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
@@ -118,12 +118,16 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 
 #TWRP CONFIG:
 DEVICE_RESOLUTION := 720x1280
+# this enables proper handling of /data/media on devices that have this folder for storage
+RECOVERY_SDCARD_ON_DATA := true
+# disables things like sdcard partitioning
 BOARD_HAS_NO_REAL_SDCARD := true
 TW_INCLUDE_JB_CRYPTO := true
 TW_BRIGHTNESS_PATH := /sys/devices/platform/tegra-pwm-bl/backlight/tegra-pwm-bl/brightness
 TW_MAX_BRIGHTNESS := 255
 TW_NO_SCREEN_BLANK := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
+HAVE_SELINUX := true
 
 # UMS
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/f_mass_storage/lun0/file"

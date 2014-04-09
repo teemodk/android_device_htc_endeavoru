@@ -61,7 +61,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/ueventd.endeavoru.rc:root/ueventd.endeavoru.rc
 
 # TWRP
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/root/twrp.fstab:recovery/root/etc/twrp.fstab 
 
@@ -93,7 +92,6 @@ PRODUCT_PACKAGES += \
 
 # Wi-Fi
 $(call inherit-product, hardware/ti/wlan/mac80211/wl128x-wlan-products.mk)
-PRODUCT_COPY_FILES +=
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/prebuilt/bin/wifi_calibration.sh:system/bin/wifi_calibration.sh \
      $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
