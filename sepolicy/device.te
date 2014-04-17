@@ -1,3 +1,4 @@
 type knv_device, dev_type;
 type nvhost_writable_device, dev_type, mlstrustedobject;
 type throughput_device, dev_type;
+type diag_device, dev_type;

@@ -1,2 +1,32 @@
-# Fix zygote sigchld denials.
-allow zygote init_shell:process sigchld;
+#=========== audit2allow ==============
+# audit2allow -p sepolicy < .avc > .txt
+
+#============= kernel ==============
+allow kernel unlabeled:filesystem mount;
+
+#============= rild ============== ?
+# comm="IMCdownload" name="/" dev=usbfs
+allow rild unlabeled:filesystem mount;
+allow rild diag_device:chr_file rw_file_perms;
+
+#============= vold ==============
+#keep for history. DONT IMPL!:allow vold kernel:system module_request;
+# https://android.googlesource.com/platform/cts/+/f2cfdf5c057140d9442fcfeb4e4a648e8258b659
+
+#============= untrusted_app ==============
+allow untrusted_app debugfs:file { read getattr };
+allow untrusted_app device:sock_file write;
+allow untrusted_app su_exec:file { read execute open execute_no_trans };
+# dir "microvolt"
+allow untrusted_app healthd:dir search;
+# file "runtime_active_time"
+allow untrusted_app healthd:file { read getattr open };
+
+#============= zygote ==============
+allow zygote devpts:chr_file { read write };
+# probably xposeds disable mechanism
+allow zygote input_device:dir r_dir_perms;
+allow zygote input_device:chr_file { read write ioctl open };
+
+#============= system ==============
+allow system cache_backup_file:file relabelto;

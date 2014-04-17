@@ -58,10 +58,10 @@ USES_TI_MAC80211 := true
 BOARD_WIFI_SKIP_CAPABILITIES := true
 
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
+WPA_SUPPLICANT_VERSION           := VER_0_8_X_TI
 # Private libs for the non-TI wpa_supplicant
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_wl12xx
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wl12xx
+#BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_wl12xx
+#BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wl12xx
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_WLAN_DEVICE                := wl12xx_mac80211
 BOARD_SOFTAP_DEVICE              := wl12xx_mac80211
@@ -119,7 +119,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 #TWRP CONFIG:
 DEVICE_RESOLUTION := 720x1280
 # this enables proper handling of /data/media on devices that have this folder for storage
-RECOVERY_SDCARD_ON_DATA := true
+#RECOVERY_SDCARD_ON_DATA := true
 # disables things like sdcard partitioning
 BOARD_HAS_NO_REAL_SDCARD := true
 TW_INCLUDE_JB_CRYPTO := true
@@ -146,4 +146,5 @@ BOARD_SEPOLICY_UNION += \
      drmserver.te       \
      fixme.te           \
      healthd.te         \
+     ueventd.te         \
      zygote.te
