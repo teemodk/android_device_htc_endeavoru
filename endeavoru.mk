@@ -64,8 +64,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/root/twrp.fstab:recovery/root/etc/twrp.fstab 
 
-# configs
+# Config files
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/40_se_app_process:system/etc/init.d/40_se_app_process \
+    $(LOCAL_PATH)/configs/99_slim_x:system/etc/init.d/99_slim_x \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
 
 # nfc
@@ -82,7 +84,7 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/prebuilt/bin/load-bt.sh:system/bin/load-bt.s
 PRODUCT_PACKAGES += \
     l2ping \
     hciconfig \
-    hcitool \
+    hcitool
 
 # audio packages
 PRODUCT_PACKAGES += \

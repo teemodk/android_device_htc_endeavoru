@@ -1,0 +1,16 @@
+#!/system/bin/sh
+
+# Enable sweep 2 wake
+echo "1" > /sys/android_touch/sweep2wake
+
+# Swipe left for OFF, right for ON
+echo "0" > /sys/android_touch/s2w_allow_stroke
+
+# distance to swipe
+echo "400" > /sys/android_touch/s2w_min_distance
+
+# Disable button lights
+echo 1 > /sys/class/leds/button-backlight/brightness
+chmod 444 /sys/class/leds/button-backlight/brightness
+echo 1 > /sys/class/leds/button-backlight/button_brightness
+chmod 444 /sys/class/leds/button-backlight/button_brightness
