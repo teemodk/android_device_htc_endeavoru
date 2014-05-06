@@ -10,7 +10,7 @@ allow rild unlabeled:filesystem mount;
 allow rild diag_device:chr_file rw_file_perms;
 
 #============= vold ==============
-#keep for history. DONT IMPL!:allow vold kernel:system module_request;
+# keep for history. DO NOT add rule:allow vold kernel:system module_request;
 # https://android.googlesource.com/platform/cts/+/f2cfdf5c057140d9442fcfeb4e4a648e8258b659
 
 #============= untrusted_app ==============
@@ -30,3 +30,8 @@ allow zygote input_device:chr_file { read write ioctl open };
 
 #============= system ==============
 allow system cache_backup_file:file relabelto;
+
+#============= netd ==============
+# tethering WiFi hotspot
+allow netd self:capability { setuid setgid };
+
