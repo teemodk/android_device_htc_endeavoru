@@ -10,7 +10,10 @@ echo "0" > /sys/android_touch/s2w_allow_stroke
 echo "400" > /sys/android_touch/s2w_min_distance
 
 # Disable button lights
-echo 1 > /sys/class/leds/button-backlight/brightness
-chmod 444 /sys/class/leds/button-backlight/brightness
-echo 1 > /sys/class/leds/button-backlight/button_brightness
+# echo 1 > /sys/class/leds/button-backlight/brightness
+# chmod 444 /sys/class/leds/button-backlight/brightness
+
+# Button lights brightness: 1=Dark; 20=Dim; 255=Full (not sure about 0)
+echo 20 > /sys/class/leds/button-backlight/button_brightness
+# 444=lock brightness; # 666=Let apps adjust brightness (same as "#" at start of line)
 chmod 444 /sys/class/leds/button-backlight/button_brightness
