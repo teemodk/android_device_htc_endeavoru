@@ -25,13 +25,16 @@ on init
     export EXTERNAL_STORAGE /storage/sdcard0
 
     # USB OTG
-#    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-#    mkdir /storage/usbdisk 0700 root root
-#    export SECONDARY_STORAGE /storage/usbdisk
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/usbdisk 0700 root root
+    export SECONDARY_STORAGE /storage/usbdisk
 
     # Backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
+
+    symlink /storage/usbdisk /mnt/usbdisk
+    symlink /mnt/usbdisk /usbdisk
 
 on fs
     mkdir /rca 0775 radio radio
