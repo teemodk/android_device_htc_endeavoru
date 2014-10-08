@@ -1,5 +1,3 @@
-import /init.recovery.endeavoru.rc
-
 on early-init
     start ueventd
     start healthd
