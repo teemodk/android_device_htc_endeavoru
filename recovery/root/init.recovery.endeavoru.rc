@@ -1,94 +1,59 @@
 on early-init
-    start ueventd
-    start healthd
+    setenforce permissive
 
 on init
-    export PATH /sbin:/system/bin
-    export LD_LIBRARY_PATH .:/sbin
-    export ANDROID_ROOT /system
-    export ANDROID_DATA /data
-    export EXTERNAL_STORAGE /sdcard
-
-    mkdir /boot
-    mkdir /recovery
-    mkdir /system
-    mkdir /data
-    mkdir /cache
-    mount tmpfs tmpfs /tmp
-
-    chown root shell /tmp
-    chmod 0775 /tmp
-
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18D1
-    write /sys/class/android_usb/android0/idProduct D002
-    write /sys/class/android_usb/android0/functions adb
-    write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
-    write /sys/class/android_usb/android0/iProduct ${ro.product.model}
-    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
-
+    mount ext4 /dev/block/mmcblk0p13 /cache wait nosuid nodev
+    chown system cache /cache
+    chmod 0770 /cache
 
 on boot
+    setprop usb.vendor 0bb4
+    setprop usb.product.adb 0ff9
+    setprop usb.product.mtpadb 0ca8
+    chown system system /sys/class/leds/amber/brightness
+    chown system system /sys/class/leds/amber/blink
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/blink
 
-    ifup lo
-    hostname localhost
-    domainname localdomain
+# Power management settings from init.endeavoru.common.rc
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor ondemand
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor ondemand
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor ondemand
+    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min 10000
+    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
+    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
+    write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
+    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
+    write /sys/module/cpu_tegra3/parameters/auto_hotplug 1
+    write /sys/module/cpuidle/parameters/lp2_in_idle 1
 
-    class_start default
+service choice_fn /sbin/choice_fn
+    oneshot
 
-on property:sys.powerctl=*
-   powerctl ${sys.powerctl}
+service htcbatt /sbin/htcbatt
+    oneshot
 
-on property:sys.storage.ums_enabled=1
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/functions adb,mass_storage
-    write /sys/class/android_usb/android0/enable 1
+service offmode_charging /sbin/offmode_charging
+    disabled
+    oneshot
 
-on property:sys.storage.ums_enabled=0
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/functions adb
-    write /sys/class/android_usb/android0/enable ${service.adb.root}
+service detect_key /sbin/detect_key
+    disabled
+    oneshot
+
+on property:persist.service.zcharge.enable=1
+   # backlight
+    write /sys/class/backlight/tegra-pwm-bl/brightness 0
 
 on property:sys.usb.config=none
-    stop adbd
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/bDeviceClass 0
-
-on property:sys.usb.config=mtp,adb
-    stop adbd
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/functions mtp,adb
-    write /sys/class/android_usb/android0/enable 1
-    start adbd
+    write /sys/devices/platform/android_usb/usb_function_switch 1
+    setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=adb
-    stop adbd
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/functions adb
-#   write /sys/class/android_usb/android0/functions adb,mass_storage
-    write /sys/class/android_usb/android0/enable ${service.adb.root}
-    start adbd
+    write /sys/devices/platform/android_usb/usb_function_switch 3
+    setprop sys.usb.state ${sys.usb.config}
 
-service ueventd /sbin/ueventd
-    critical
-
-service healthd /sbin/healthd -n
-    critical
-
-service recovery /sbin/recovery
-
-service adbd /sbin/adbd recovery
-    disabled
-    socket adbd stream 660 system system
-
-# Always start adbd on userdebug and eng builds
-on property:ro.debuggable=1
-    #write /sys/class/android_usb/android0/enable 1
-    #start adbd
-    setprop service.adb.root 1
-
-# Restart adbd so it can run as root
-on property:service.adb.root=1
-    write /sys/class/android_usb/android0/enable 0
-    restart adbd
-    write /sys/class/android_usb/android0/enable 1
+on property:sys.usb.config=mtp,adb
+    write /sys/devices/platform/android_usb/usb_function_switch 130
+    setprop sys.usb.state ${sys.usb.config}
