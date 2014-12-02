@@ -31,21 +31,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vold.umsdirtyratio=50
 
-# Override phone-xhdpi-1024-dalvik-heap.mk setting
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapgrowthlimit=96m
-
 # Smoother window manager experience.
 PRODUCT_PROPERTY_OVERRIDES += \
     windowsmgr.max_events_per_sec = 240 #300
 
 # Old RIL features
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.ril.v3=signalstrength,skipbrokendatacall
+    ro.telephony.ril.config=fakeiccid,signalstrength,skipbrokendatacall
 
 # force gpu rendering(2d drawing) [Nvidia setting - libhtc-opt2.so]
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.ui.hw=true
+
+# libhwui flags
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.render_dirty_regions=false
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -60,14 +60,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.endeavoru.cm.rc:root/init.endeavoru.cm.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.endeavoru.rc:root/ueventd.endeavoru.rc
 
-# TWRP
+# configs
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/root/twrp.fstab:recovery/root/etc/twrp.fstab 
-
-# Config files
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/40_se_app_process:system/etc/init.d/40_se_app_process \
-    $(LOCAL_PATH)/configs/99_slim_x:system/etc/init.d/99_slim_x \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
 
 # nfc
@@ -84,7 +78,7 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/prebuilt/bin/load-bt.sh:system/bin/load-bt.s
 PRODUCT_PACKAGES += \
     l2ping \
     hciconfig \
-    hcitool
+    hcitool \
 
 # audio packages
 PRODUCT_PACKAGES += \
@@ -94,13 +88,12 @@ PRODUCT_PACKAGES += \
 
 # Wi-Fi
 $(call inherit-product, hardware/ti/wlan/mac80211/wl128x-wlan-products.mk)
+PRODUCT_COPY_FILES +=
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/prebuilt/bin/wifi_calibration.sh:system/bin/wifi_calibration.sh \
      $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
      $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 PRODUCT_PACKAGES += \
-    dhcpcd.conf \
-    hostapd.conf \
     wifical.sh \
     128x_TQS_D_1.7.ini \
     calibrator \
@@ -108,8 +101,7 @@ PRODUCT_PACKAGES += \
     regulatory.bin \
     wlconf
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0
-    
+    wifi.interface=wlan0 \
 $(call inherit-product, vendor/htc/endeavoru/endeavoru-vendor.mk)
 
 # common tegra3-HOX+ configs

@@ -1,18 +1,18 @@
+# Release name
+PRODUCT_RELEASE_NAME := endeavoru
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-# Specify phone tech before including full_phone
-$(call inherit-product, vendor/slim/config/gsm.mk)
-
-# Inherit some common Slim stuff.
+# Inherit some common stuff.
 $(call inherit-product, vendor/slim/config/common_full_phone.mk)
+
+# Enhanced NFC
+$(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/htc/endeavoru/full_endeavoru.mk)
-
-# Release name
-PRODUCT_RELEASE_NAME := endeavoru
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := endeavoru

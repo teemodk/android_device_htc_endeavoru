@@ -32,19 +32,19 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Partitions Info
 #cat /proc/emmc
 #dev:        size     erasesize name
-#mmcblk0p5:  00800000  00001000 "recovery"
-#mmcblk0p4:  00800000  00001000 "boot"
-#mmcblk0p12: 50000000  00001000 "system"
-#mmcblk0p13: 14000000  00001000 "cache"
-#mmcblk0p17: 00200000  00001000 "misc"
-#mmcblk0p1:  00600000  00001000 "wlan"
-#mmcblk0p2:  00200000  00001000 "WDM"
-#mmcblk0p20: 00200000  00001000 "pdata"
-#mmcblk0p3:  00600000  00001000 "radiocab"
-#mmcblk0p14:650000000  00001000 "internalsd"
-#mmcblk0p15: 89400000  00001000 "userdata"
-#mmcblk0p19: 01600000  00001000 "devlog"
-#mmcblk0p16: 00200000  00001000 "extra"
+#mmcblk0p5: 00800000 00001000 "recovery"
+#mmcblk0p4: 00800000 00001000 "boot"
+#mmcblk0p12: 50000000 00001000 "system"
+#mmcblk0p13: 14000000 00001000 "cache"
+#mmcblk0p17: 00200000 00001000 "misc"
+#mmcblk0p1: 00600000 00001000 "wlan"
+#mmcblk0p2: 00200000 00001000 "WDM"
+#mmcblk0p20: 00200000 00001000 "pdata"
+#mmcblk0p3: 00600000 00001000 "radiocab"
+#mmcblk0p14: 650000000 00001000 "internalsd"
+#mmcblk0p15: 89400000 00001000 "userdata"
+#mmcblk0p19: 01600000 00001000 "devlog"
+#mmcblk0p16: 00200000 00001000 "extra"
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
@@ -53,15 +53,14 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 2302672896
 BOARD_FLASH_BLOCK_SIZE := 4096
 
 # Wifi related defines
-USES_TI_MAC80211 := true
-# Required for newer wpa_supplicant_8_ti versions to fix tethering
-BOARD_WIFI_SKIP_CAPABILITIES := true
-
+USES_TI_MAC80211                 := true
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-WPA_SUPPLICANT_VERSION           := VER_0_8_X_TI
+# Required for newer wpa_supplicant_8 versions to fix tethering
+BOARD_WIFI_SKIP_CAPABILITIES     := true
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
 # Private libs for the non-TI wpa_supplicant
-#BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_wl12xx
-#BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wl12xx
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_wl12xx
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wl12xx
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_WLAN_DEVICE                := wl12xx_mac80211
 BOARD_SOFTAP_DEVICE              := wl12xx_mac80211
@@ -72,7 +71,7 @@ COMMON_GLOBAL_CFLAGS             += -DUSES_TI_MAC80211
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/htc/endeavoru
-TARGET_KERNEL_CONFIG := slimkat_endeavoru_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_endeavoru_defconfig
 
 # Building wifi modules
 TARGET_MODULES_SOURCE := "kernel/htc/endeavoru/drivers/net/wireless/compat-wireless_R5.SP2.03"
@@ -113,27 +112,11 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
 TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
-#RECOVERY_FSTAB_VERSION := 2
+RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_LARGE_FILESYSTEM := true
-
-#TWRP CONFIG:
-DEVICE_RESOLUTION := 720x1280
-# this enables proper handling of /data/media on devices that have this folder for storage
-#RECOVERY_SDCARD_ON_DATA := true
-# disables things like sdcard partitioning
-BOARD_HAS_NO_REAL_SDCARD := true
-TW_INCLUDE_JB_CRYPTO := true
-TW_BRIGHTNESS_PATH := /sys/devices/platform/tegra-pwm-bl/backlight/tegra-pwm-bl/brightness
-TW_MAX_BRIGHTNESS := 255
-TW_NO_SCREEN_BLANK := true
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-HAVE_SELINUX := true
 
 # UMS
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/f_mass_storage/lun0/file"
-
-# External apps on SD
-TARGET_EXTERNAL_APPS = sdcard0
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru
@@ -143,11 +126,9 @@ BOARD_SEPOLICY_DIRS += \
     device/htc/endeavoru/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-     app.te             \
-     device.te          \
-     file_contexts      \
-     drmserver.te       \
-     fixme.te           \
-     healthd.te         \
-     ueventd.te         \
-     zygote.te
+	file_contexts \
+	akmd.te \
+	init_shell.te \
+	navl_server.te \
+	uim_sysfs.te \
+	system_server.te \
