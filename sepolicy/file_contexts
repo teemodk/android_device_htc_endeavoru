@@ -3,9 +3,6 @@
 /dev/tihci                        u:object_r:tun_device:s0
 /dev/hci_tty                      u:object_r:tun_device:s0
 
-#/system/bin/initial_regdom.sh     u:object_r:regdom_exec:s0
-#/system/bin/wifi_calibration.sh   u:object_r:wifi_calib_exec:s0
-#/system/bin/load-bt.sh            u:object_r:load_bt_exec:s0
 /system/bin/akmd                  u:object_r:akmd_exec:s0
 /system/bin/cplc_main             u:object_r:cplc_exec:s0
 /system/bin/ewtzmud               u:object_r:ewtzmud_exec:s0
@@ -34,3 +31,6 @@
 /dev/ewtzmu2                      u:object_r:sensors_device:s0
 /dev/ewtzmu2daemon                u:object_r:sensors_device:s0
 /dev/ewtzmu2hal                   u:object_r:sensors_device:s0
+
+# RXN
+/data/RXN(/.*)?                   u:object_r:gps_data_file:s0
