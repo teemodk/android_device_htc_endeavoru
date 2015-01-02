@@ -132,4 +132,5 @@ BOARD_SEPOLICY_UNION += \
 	kernel.te \
 	navl_server.te \
 	uim_sysfs.te \
+	system.te \
 	system_server.te \

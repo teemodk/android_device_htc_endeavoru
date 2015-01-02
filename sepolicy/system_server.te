@@ -1,1 +1,4 @@
 allow system_server nav:unix_stream_socket {rw_stream_socket_perms connectto};
+
+# allow custom notifications from sdcard
+allow system_server fuse:file read;

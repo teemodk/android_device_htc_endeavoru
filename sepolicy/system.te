@@ -1,0 +1,3 @@
+# allow system HOME to access asec files - fixes app2sd shortcuts
+allow system_app asec_apk_file:dir search;
+allow system_app asec_apk_file:file r_file_perms;
