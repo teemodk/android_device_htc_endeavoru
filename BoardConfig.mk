@@ -131,6 +131,8 @@ BOARD_SEPOLICY_UNION += \
 	init_shell.te \
 	kernel.te \
 	navl_server.te \
+	recovery.te \
 	uim_sysfs.te \
+	sysinit.te \
 	system.te \
 	system_server.te \
