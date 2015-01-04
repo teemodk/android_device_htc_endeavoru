@@ -133,6 +133,7 @@ BOARD_SEPOLICY_UNION += \
 	navl_server.te \
 	recovery.te \
 	uim_sysfs.te \
+	supersu.te \
 	sysinit.te \
 	system.te \
 	system_server.te \
