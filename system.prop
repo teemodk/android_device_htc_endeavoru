@@ -88,6 +88,9 @@ ro.hwui.renderer.disable_opaque=true
 # 0 => WCDMA preferred.
 ro.telephony.default_network=0
 
+# Framework: Fix GSM signal strength
+ro.telephony.ril.v3=signalstrength
+
 # RIL, for ATT feature
 # ro.ril.att.feature=1
 # ro.ril.enable.ucsq=2
