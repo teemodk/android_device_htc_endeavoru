@@ -128,6 +128,7 @@ BOARD_SEPOLICY_DIRS += \
 BOARD_SEPOLICY_UNION += \
 	file_contexts \
 	akmd.te \
+	hotspot.te \
 	init_shell.te \
 	kernel.te \
 	navl_server.te \

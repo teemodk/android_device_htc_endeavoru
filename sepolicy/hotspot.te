@@ -1,0 +1,6 @@
+#============= hostapd ==============
+allow hostapd rfkill_device:chr_file read;
+
+#============= netd ==============
+allow netd dhcp_data_file:dir setattr;
+allow netd self:capability fsetid;
