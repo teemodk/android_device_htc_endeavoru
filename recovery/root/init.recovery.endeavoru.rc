@@ -1,9 +1,15 @@
+on early-init
+    setenforce permissive
+
 on init
     mount ext4 /dev/block/mmcblk0p15 /cache wait nosuid nodev
     chown system cache /cache
     chmod 0770 /cache
 
 on boot
+    setprop usb.vendor 0bb4
+    setprop usb.product.adb 0ff9
+    setprop usb.product.mtpadb 0ca8
     chown system system /sys/class/leds/amber/brightness
     chown system system /sys/class/leds/amber/blink
     chown system system /sys/class/leds/green/brightness
@@ -22,11 +28,6 @@ on boot
     write /sys/module/cpu_tegra3/parameters/auto_hotplug 1
     write /sys/module/cpuidle/parameters/lp2_in_idle 1
 
-# Always start adbd on userdebug and eng builds
-on property:ro.debuggable=1
-    setprop service.adb.root 1
-    start adbd
-
 service choice_fn /sbin/choice_fn
     oneshot
 
@@ -44,3 +45,15 @@ service detect_key /sbin/detect_key
 on property:persist.service.zcharge.enable=1
    # backlight
     write /sys/class/backlight/tegra-pwm-bl/brightness 0
+
+on property:sys.usb.config=none
+    write /sys/devices/platform/android_usb/usb_function_switch 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=adb
+    write /sys/devices/platform/android_usb/usb_function_switch 3
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mtp,adb
+    write /sys/devices/platform/android_usb/usb_function_switch 130
+    setprop sys.usb.state ${sys.usb.config}
