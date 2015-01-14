@@ -34,17 +34,14 @@ on init
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
     # USB OTG
-#    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-#    mkdir /storage/usbdisk 0700 root root
-#    symlink /storage/usbdisk /mnt/usbdisk
-#    symlink /mnt/usbdisk /usbdisk
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/usbdisk 0700 root root
+    symlink /storage/usbdisk /mnt/usbdisk
+    symlink /mnt/usbdisk /usbdisk
 
-#    export SECONDARY_STORAGE /storage/usbdisk
+    export SECONDARY_STORAGE /storage/usbdisk
 
 on fs
-    setprop ro.crypto.umount_sd false
-    setprop ro.crypto.fuse_sdcard true
-
     mkdir /rca 0775 root radio
     mkdir /rfs 0775 root radio
     mkdir /devlog 0700 root root
