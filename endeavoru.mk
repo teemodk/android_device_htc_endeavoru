@@ -22,10 +22,9 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/endeavoru/overlay
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mass_storage,adb
 
-# Don't store dalvik on /cache, it gets annoying when /cache is wiped
-# by us to enable booting into recovery after flashing boot.img
+# Our /cache is big enough to contain the /system Dalvik cache
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-data-only=1
+    dalvik.vm.dexopt-data-only=0
 
 # Increase UMS speed
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -106,3 +105,7 @@ $(call inherit-product, vendor/htc/endeavoru/endeavoru-vendor.mk)
 
 # common tegra3-HOX+ configs
 $(call inherit-product, device/htc/tegra3-common/tegra3.mk)
+
+# Recovery partition layout check
+PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/prebuilt/bin/layout-check.sh:system/bin/layout-check.sh
