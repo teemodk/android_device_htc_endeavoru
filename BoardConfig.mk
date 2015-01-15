@@ -32,19 +32,19 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Partitions Info
 #cat /proc/emmc
 #dev:        size     erasesize name
-#mmcblk0p5: 00800000 00001000 "recovery"
-#mmcblk0p4: 00800000 00001000 "boot"
+#mmcblk0p1:  00600000 00001000 "wlan"
+#mmcblk0p2:  00200000 00001000 "WDM"
+#mmcblk0p3:  00600000 00001000 "radiocab"
+#mmcblk0p4:  00800000 00001000 "boot"
+#mmcblk0p5:  00800000 00001000 "recovery"
 #mmcblk0p12: 50000000 00001000 "system"
 #mmcblk0p13: 14000000 00001000 "cache"
-#mmcblk0p17: 00200000 00001000 "misc"
-#mmcblk0p1: 00600000 00001000 "wlan"
-#mmcblk0p2: 00200000 00001000 "WDM"
-#mmcblk0p20: 00200000 00001000 "pdata"
-#mmcblk0p3: 00600000 00001000 "radiocab"
-#mmcblk0p14: 650000000 00001000 "internalsd"
+#mmcblk0p14:650000000 00001000 "internalsd"
 #mmcblk0p15: 89400000 00001000 "userdata"
-#mmcblk0p19: 01600000 00001000 "devlog"
 #mmcblk0p16: 00200000 00001000 "extra"
+#mmcblk0p17: 00200000 00001000 "misc"
+#mmcblk0p19: 01600000 00001000 "devlog"
+#mmcblk0p20: 00200000 00001000 "pdata"
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
