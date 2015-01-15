@@ -69,6 +69,9 @@ on post-fs-data
     chmod 0770 /system/etc/gps/tigpsrouter
     chmod 0777 /dev/tihci
 
+    # link xtradata to sdcard
+    symlink /xtradata /storage/emulated/legacy/xtradata
+
 on boot
     # Setup paths used for socket communication with the dhcp daemon(dhcpd)
     mkdir /data/misc/dhcp 0775 dhcp dhcp

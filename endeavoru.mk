@@ -24,7 +24,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Our /cache is big enough to contain the /system Dalvik cache
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-data-only=0
+    dalvik.vm.dexopt-data-only=1
 
 # Increase UMS speed
 PRODUCT_PROPERTY_OVERRIDES += \

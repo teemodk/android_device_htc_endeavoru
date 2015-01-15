@@ -1,9 +1,7 @@
 #TWRP
 # mount point  fstype   device                 [flags]
-/boot          emmc    /dev/block/mmcblk0p4
+/boot          emmc    /dev/block/mmcblk0p4    flags=backup=1
 /system        ext4    /dev/block/mmcblk0p12   flags=backup=1;display="System"
-/unused        ext4    /dev/block/mmcblk0p13   flags=backup=0;display="Unused";ignoreblkid
+/cache         ext4    /dev/block/mmcblk0p13   flags=backup=0;display="Cache";ignoreblkid
 /data          ext4    /dev/block/mmcblk0p14   flags=backup=1;display="Data & SD";ignoreblkid;length=-16384
-/cache         ext4    /dev/block/mmcblk0p15   flags=backup=0;display="Cache";ignoreblkid
-#/recovery      emmc    /dev/block/mmcblk0p5
-#/misc          emmc    /dev/block/mmcblk0p17
+/xtradata      ext4    /dev/block/mmcblk0p15   flags=backup=0;display="2GB Extra Data";ignoreblkid
