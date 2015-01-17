@@ -107,6 +107,7 @@ BOARD_HAVE_BLUETOOTH_TI := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/endeavoru/bluetooth
 
 # Recovery
+TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
@@ -129,9 +130,6 @@ TW_NO_SCREEN_BLANK := true
 # fixes slanty looking graphics on some devices
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 HAVE_SELINUX := true
-
-# UMS
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/f_mass_storage/lun0/file"
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru

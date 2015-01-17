@@ -20,11 +20,7 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/endeavoru/overlay
 
 # Set default USB interface
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mass_storage,adb
-
-# Our /cache is big enough to contain the /system Dalvik cache
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-data-only=1
+    persist.sys.usb.config=mtp,adb
 
 # Increase UMS speed
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -60,6 +56,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/ueventd.endeavoru.rc:root/ueventd.endeavoru.rc
 
 # TWRP
+
+# tell installer we are handling the new storage layout
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.endeavoru.newlayout=1
+    
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/root/twrp.fstab:recovery/root/etc/twrp.fstab 
 
@@ -114,6 +115,3 @@ $(call inherit-product, vendor/htc/endeavoru/endeavoru-vendor.mk)
 # common tegra3-HOX+ configs
 $(call inherit-product, device/htc/tegra3-common/tegra3.mk)
 
-# Recovery partition layout check
-PRODUCT_COPY_FILES += \
-     $(LOCAL_PATH)/prebuilt/bin/layout-check.sh:system/bin/layout-check.sh
