@@ -22,6 +22,7 @@ on init
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
+    mkdir /xtradata/1xData 0555 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
@@ -32,6 +33,8 @@ on init
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+    
+    symlink /xtradata/1xdata /storage/emulated/legacy/1xdata
 
     # USB OTG
 #    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
