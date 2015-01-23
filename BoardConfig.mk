@@ -130,6 +130,7 @@ TW_NO_SCREEN_BLANK := true
 # fixes slanty looking graphics on some devices
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 HAVE_SELINUX := true
+TWHAVE_SELINUX := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru
