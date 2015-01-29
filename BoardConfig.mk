@@ -40,7 +40,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 #mmcblk0p12: 50000000 00001000 "system"
 #mmcblk0p13: 14000000 00001000 "cache"      - /cache
 #mmcblk0p14:650000000 00001000 "internalsd" - is now /data, including emulated sdcard
-#mmcblk0p15: 89400000 00001000 "userdata"   - is now xtradata
+#mmcblk0p15: 89400000 00001000 "userdata"   - is now /xtradata
 #mmcblk0p16: 00200000 00001000 "extra"
 #mmcblk0p17: 00200000 00001000 "misc"
 #mmcblk0p19: 01600000 00001000 "devlog"
@@ -113,9 +113,26 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
-TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
-RECOVERY_FSTAB_VERSION := 2
+TARGET_RECOVERY_FSTAB := device/htc/endeavoru/recovery/root/twrp.fstab
+#RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_LARGE_FILESYSTEM := true
+
+#TWRP CONFIG:
+DEVICE_RESOLUTION := 720x1280
+# this enables proper handling of /data/media on devices that have this folder for storage
+RECOVERY_SDCARD_ON_DATA := true
+# disables things like sdcard partitioning
+BOARD_HAS_NO_REAL_SDCARD := true
+# removes the USB storage button on devices that don't support USB storage
+TW_NO_USB_STORAGE := true
+TW_INCLUDE_JB_CRYPTO := true
+TW_BRIGHTNESS_PATH := /sys/devices/platform/tegra-pwm-bl/backlight/tegra-pwm-bl/brightness
+TW_MAX_BRIGHTNESS := 255
+TW_NO_SCREEN_BLANK := true
+# fixes slanty looking graphics on some devices
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+HAVE_SELINUX := true
+TWHAVE_SELINUX := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru

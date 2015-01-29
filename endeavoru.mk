@@ -55,7 +55,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.endeavoru.cm.rc:root/init.endeavoru.cm.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.endeavoru.rc:root/ueventd.endeavoru.rc
 
-# configs
+# TWRP
+
+# tell installer we are handling the new storage layout
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.endeavoru.newlayout=1
+    
+# config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
 
@@ -73,7 +79,7 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/prebuilt/bin/load-bt.sh:system/bin/load-bt.s
 PRODUCT_PACKAGES += \
     l2ping \
     hciconfig \
-    hcitool \
+    hcitool
 
 # audio packages
 PRODUCT_PACKAGES += \
@@ -83,7 +89,6 @@ PRODUCT_PACKAGES += \
 
 # Wi-Fi
 $(call inherit-product, hardware/ti/wlan/mac80211/wl128x-wlan-products.mk)
-PRODUCT_COPY_FILES +=
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/prebuilt/bin/wifi_calibration.sh:system/bin/wifi_calibration.sh \
      $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
@@ -96,7 +101,8 @@ PRODUCT_PACKAGES += \
     regulatory.bin \
     wlconf
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0 \
+    wifi.interface=wlan0
+    
 $(call inherit-product, vendor/htc/endeavoru/endeavoru-vendor.mk)
 
 # common tegra3-HOX+ configs

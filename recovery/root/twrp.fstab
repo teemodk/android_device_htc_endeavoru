@@ -1,0 +1,9 @@
+#TWRP
+# mount point  fstype   device                 [flags]
+/recovery      emmc    /dev/block/mmcblk0p5
+/boot          emmc    /dev/block/mmcblk0p4    flags=backup=1
+/system        ext4    /dev/block/mmcblk0p12   flags=backup=1;display="System"
+/cache         ext4    /dev/block/mmcblk0p13   flags=backup=0;display="Cache";ignoreblkid
+/data          ext4    /dev/block/mmcblk0p14   flags=backup=1;storagename="Internal SD Card";ignoreblkid;length=-16384
+/xtradata      ext4    /dev/block/mmcblk0p15   flags=backup=1;display="2GB Extra Data";backup=0;storage;wipeingui;ignoreblkid
+/misc          emmc    /dev/block/mmcblk0p17
