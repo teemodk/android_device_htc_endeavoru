@@ -69,26 +69,53 @@ on property:persist.service.zcharge.enable=1
     # backlight
     write /sys/class/backlight/tegra-pwm-bl/brightness 0
 
-    # Power management settings
-#    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor userspace
-#    write /sys/module/cpu_tegra3/parameters/no_lp 0
-#    write /sys/devices/system/cpu/cpu1/online 0
-#    write /sys/devices/system/cpu/cpu2/online 0
-#    write /sys/devices/system/cpu/cpu3/online 0
-#    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed 340000
-#    write /sys/devices/system/cpu/cpufreq/interactive/boost_factor 2
-#    write /sys/devices/system/cpu/cpufreq/interactive/sustain_load 80
-#    write /sys/module/cpu_tegra3/parameters/auto_hotplug 0
-#    write /sys/module/cpuidle/parameters/lp2_in_idle 1
+# Always start adbd on userdebug and eng builds
+on property:ro.debuggable=1
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18D1
+    write /sys/class/android_usb/android0/idProduct D001
+    write /sys/class/android_usb/android0/functions adb
+    write /sys/class/android_usb/android0/enable 1
+    write /sys/class/android_usb/android0/iManufacturer $ro.product.manufacturer
+    write /sys/class/android_usb/android0/iProduct $ro.product.model
+    write /sys/class/android_usb/android0/iSerial $ro.serialno
+    #start adbd
+    setprop service.adb.root 1
+
+# Restart adbd so it can run as root
+on property:service.adb.root=1
+    write /sys/class/android_usb/android0/enable 0
+    restart adbd
+    write /sys/class/android_usb/android0/enable 1
+
+on property:sys.storage.ums_enabled=1
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/functions adb,mass_storage
+    write /sys/class/android_usb/android0/enable 1
+
+on property:sys.storage.ums_enabled=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/functions adb
+    write /sys/class/android_usb/android0/enable ${service.adb.root}
 
 on property:sys.usb.config=none
-    write /sys/devices/platform/android_usb/usb_function_switch 1
-    setprop sys.usb.state ${sys.usb.config}
-
-on property:sys.usb.config=adb
-    write /sys/devices/platform/android_usb/usb_function_switch 3
-    setprop sys.usb.state ${sys.usb.config}
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/bDeviceClass 0
 
 on property:sys.usb.config=mtp,adb
-    write /sys/devices/platform/android_usb/usb_function_switch 130
-    setprop sys.usb.state ${sys.usb.config}
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/f_adb/on 1
+    write /sys/class/android_usb/android0/f_mtp/on 1
+    write /sys/class/android_usb/android0/functions mtp,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+
+on property:sys.usb.config=adb
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/functions adb
+    write /sys/class/android_usb/android0/f_mtp/on 0
+    write /sys/class/android_usb/android0/enable ${service.adb.root}
+    start adbd

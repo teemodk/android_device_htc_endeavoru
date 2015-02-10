@@ -1,2 +1,2 @@
 #============= zygote ==============
-allow zygote sudaemon:fd use;
+# OMNI unknown type sudaemon: allow zygote sudaemon:fd use;

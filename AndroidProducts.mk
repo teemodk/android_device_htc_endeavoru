@@ -15,4 +15,6 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_endeavoru.mk
+    $(LOCAL_DIR)/full_endeavoru.mk \
+    $(LOCAL_DIR)/omni_endeavoru.mk
+ 

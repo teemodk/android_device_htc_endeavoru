@@ -1,22 +1,24 @@
 # Release name
 PRODUCT_RELEASE_NAME := endeavoru
 
+# Grab needed APNs
+PRODUCT_COPY_FILES := vendor/omni/prebuilt/etc/apns-conf-cdma.xml:system/etc/apns-conf.xml
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-# Inherit some common stuff.
-$(call inherit-product, vendor/slim/config/common_full_phone.mk)
-
-# Enhanced NFC
-$(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
-
+# Inherit Omni GSM telephony parts
+# $(call inherit-product, vendor/omni/config/gsm.mk)
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/omni/config/common.mk)
 # Inherit device configuration
 $(call inherit-product, device/htc/endeavoru/full_endeavoru.mk)
 
+
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := endeavoru
-PRODUCT_NAME := slim_endeavoru
+PRODUCT_NAME := omni_endeavoru
 PRODUCT_BRAND := htc
 PRODUCT_MODEL := One X
 PRODUCT_MANUFACTURER := HTC
@@ -27,4 +29,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE=endeavoru \
     BUILD_FINGERPRINT="htc/htc_europe/endeavoru:4.2.2/JDQ39/231174.2:user/release-keys" \
     PRIVATE_BUILD_DESC="4.18.401.2 CL231174 release-keys"
-
