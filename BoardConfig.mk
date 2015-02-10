@@ -113,8 +113,8 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
-TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
-#TARGET_RECOVERY_FSTAB := device/htc/endeavoru/recovery/root/twrp.fstab
+#TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
+TARGET_RECOVERY_FSTAB := device/htc/endeavoru/recovery/root/twrp.fstab
 #RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_LARGE_FILESYSTEM := true
 
@@ -133,7 +133,8 @@ TW_NO_SCREEN_BLANK := true
 # fixes slanty looking graphics on some devices
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 HAVE_SELINUX := true
-TWHAVE_SELINUX := true
+#TWHAVE_SELINUX := true
+TW_EXCLUDE_SUPERSU := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru
