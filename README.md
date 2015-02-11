@@ -4,6 +4,7 @@ http://review.cyanogenmod.org/#/c/85364/
 repo init -u https://github.com/CyanogenMod/android.git -b cm-12.0
 
 .repo/local_manifests/cm_manifest.xml:
+
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <project name="TheMuppets/proprietary_vendor_htc"             path="vendor/htc"                remote="github" revision="cm-12.0" />
