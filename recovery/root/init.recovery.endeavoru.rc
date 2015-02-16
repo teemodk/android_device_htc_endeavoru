@@ -1,5 +1,4 @@
 on early-init
-    setenforce permissive
     # Stop the recovery service here. It will be started again by the choice_fn
     # service based on androidboot.mode.
     stop recovery
@@ -35,9 +34,9 @@ on boot
     write /sys/module/cpuidle/parameters/lp2_in_idle 1
 
 # Always start adbd on userdebug and eng builds
-#on property:ro.debuggable=1
-#    setprop service.adb.root 1
-#    start adbd
+on property:ro.debuggable=1
+    setprop service.adb.root 1
+    start adbd
 
 #service htc_ebdlogd /sbin/htc_ebdlogd_recvy -s -k -F /sbin -p V
 #    user root

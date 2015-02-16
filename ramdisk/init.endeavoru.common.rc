@@ -32,7 +32,7 @@ on init
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    
+
     # USB OTG
     mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
     mkdir /storage/usbdisk 0700 root root
@@ -60,6 +60,7 @@ on fs
     restorecon /rca/calib.nvm
     restorecon_recursive /rfs
 
+    setprop ro.crypto.umount_sd false
     setprop ro.crypto.fuse_sdcard true
 
 on post-fs-data
