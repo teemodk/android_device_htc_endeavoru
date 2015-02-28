@@ -22,14 +22,6 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/endeavoru/overlay
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb
 
-# Increase UMS speed
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vold.umsdirtyratio=50
-
-# Smoother window manager experience.
-PRODUCT_PROPERTY_OVERRIDES += \
-    windowsmgr.max_events_per_sec = 240 #300
-
 # Old RIL features
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril.config=signalstrength,skipbrokendatacall
@@ -99,7 +91,7 @@ PRODUCT_PACKAGES += \
     wlconf
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
-    
+
 $(call inherit-product, vendor/htc/endeavoru/endeavoru-vendor.mk)
 
 # common tegra3-HOX+ configs
