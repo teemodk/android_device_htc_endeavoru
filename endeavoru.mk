@@ -60,7 +60,8 @@ PRODUCT_COPY_FILES += \
 
 # Other extra packages
 PRODUCT_PACKAGES += \
-    librs_jni
+    librs_jni \
+    OmniTorch
 
 # Bluetooth tools
 $(call inherit-product, hardware/ti/wpan/ti-wpan-products.mk)

@@ -1,17 +1,23 @@
 # Release name
 PRODUCT_RELEASE_NAME := endeavoru
 
-# Grab needed APNs
-PRODUCT_COPY_FILES := vendor/omni/prebuilt/etc/apns-conf-cdma.xml:system/etc/apns-conf.xml
-
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
+# must be before including omni part
+TARGET_BOOTANIMATION_SIZE := 720x480
 
 # Inherit Omni GSM telephony parts
-# $(call inherit-product, vendor/omni/config/gsm.mk)
-# Inherit from our custom product configuration
+$(call inherit-product, vendor/omni/config/gsm.mk)
+
+# Inherit some common Omni stuff
 $(call inherit-product, vendor/omni/config/common.mk)
+
+# Inherit from the common Open Source product configuration
+# $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+# Inherit from the common AOSP product configuration (this will call full_base_telephony)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+
 # Inherit device configuration
 $(call inherit-product, device/htc/endeavoru/full_endeavoru.mk)
 
