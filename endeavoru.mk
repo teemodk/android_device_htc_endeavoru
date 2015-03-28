@@ -22,19 +22,6 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/endeavoru/overlay
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mass_storage,adb
 
-# Don't store dalvik on /cache, it gets annoying when /cache is wiped
-# by us to enable booting into recovery after flashing boot.img
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-data-only=1
-
-# Increase UMS speed
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vold.umsdirtyratio=50
-
-# Smoother window manager experience.
-PRODUCT_PROPERTY_OVERRIDES += \
-    windowsmgr.max_events_per_sec = 240 #300
-
 # Old RIL features
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril.config=signalstrength,skipbrokendatacall
@@ -54,13 +41,10 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/fstab.endeavoru:root/fstab.endeavoru \
     $(LOCAL_PATH)/ramdisk/init.endeavoru.rc:root/init.endeavoru.rc \
-    $(LOCAL_PATH)/ramdisk/init.endeavoru.htc.rc:root/init.endeavoru.htc.rc \
-    $(LOCAL_PATH)/ramdisk/init.endeavoru.common.rc:root/init.endeavoru.common.rc \
     $(LOCAL_PATH)/ramdisk/init.endeavoru.usb.rc:root/init.endeavoru.usb.rc \
-    $(LOCAL_PATH)/ramdisk/init.endeavoru.cm.rc:root/init.endeavoru.cm.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.endeavoru.rc:root/ueventd.endeavoru.rc
 
-# configs
+# config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
 

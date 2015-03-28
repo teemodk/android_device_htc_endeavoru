@@ -1,3 +1,5 @@
 #============= recovery ==============
-allow recovery block_device:blk_file ioctl;
-allow recovery labeledfs:filesystem remount;
+#allow recovery block_device:blk_file ioctl;
+#allow recovery labeledfs:filesystem remount;
+# Allow recovery to set permissive mode
+permissive recovery;
