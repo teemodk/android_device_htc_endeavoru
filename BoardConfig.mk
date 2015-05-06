@@ -72,7 +72,7 @@ COMMON_GLOBAL_CFLAGS             += -DUSES_TI_MAC80211
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/htc/endeavoru
-TARGET_KERNEL_CONFIG := slim_endeavoru_defconfig
+TARGET_KERNEL_CONFIG := twrp_endeavoru_defconfig
 
 # Building wifi modules
 TARGET_MODULES_SOURCE := "kernel/htc/endeavoru/drivers/net/wireless/compat-wireless_R5.SP2.03"
@@ -113,8 +113,8 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
-TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
-#TARGET_RECOVERY_FSTAB := device/htc/endeavoru/recovery/root/twrp.fstab
+#TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
+TARGET_RECOVERY_FSTAB := device/htc/endeavoru/recovery/root/twrp.fstab
 #RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_LARGE_FILESYSTEM := true
 
