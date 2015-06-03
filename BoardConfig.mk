@@ -113,8 +113,8 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
-TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
-#TARGET_RECOVERY_FSTAB := device/htc/endeavoru/recovery/root/twrp.fstab
+#TARGET_RECOVERY_FSTAB := device/htc/endeavoru/ramdisk/fstab.endeavoru
+TARGET_RECOVERY_FSTAB := device/htc/endeavoru/recovery/root/twrp.fstab
 #RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_LARGE_FILESYSTEM := true
 
@@ -139,6 +139,19 @@ TWHAVE_SELINUX := true
 # cut the size of twrp
 # TW_INCLUDE_JB_CRYPTO := true
 TW_EXCLUDE_SUPERSU := true
+
+#MultiROM Config
+MR_DPI := hdpi
+MR_KEXEC_MEM_MIN := 0x81000000
+MR_INIT_DEVICES := device/htc/endeavoru/mr_init_devices.c
+MR_FSTAB := device/htc/endeavoru/fstab.endeavoru.twrp
+MR_DPI_MUL := 1
+MR_INPUT_TYPE := type_b
+MR_DEVICE_HOOKS := device/htc/endeavoru/mr_hooks.c
+MR_DEVICE_HOOKS_VER := 3
+MR_DPI_FONT := 200
+
+MR_USE_MROM_FSTAB := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru
