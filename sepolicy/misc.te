@@ -35,7 +35,6 @@ type cplc_exec, exec_type, file_type;
 init_daemon_domain(cplc)
 
 
-
 # WIFI CALIBRATION
 type wifi_calib, domain;
 type wifi_calib_exec, exec_type, file_type;

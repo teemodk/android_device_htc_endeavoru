@@ -64,3 +64,9 @@ ro.telephony.ril.config=signalstrength
 
 # Enable USB OTG (CAF commit to Settings)
 persist.sys.isUsbOtgEnabled=true
+
+# Framework: Fix GSM signal strength
+ro.telephony.ril.v3=signalstrength
+
+# Force soft keys
+# qemu.hw.mainkeys=0

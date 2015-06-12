@@ -35,10 +35,6 @@
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
     <bool name="config_automatic_brightness_available">true</bool>
 
-    <!-- Performance profiles -->
-    <string name="config_perf_profile_prop">powerhal</string>
-    <string name="config_perf_profile_default_entry">1</string>
-
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N  1 zones as follows:
 
@@ -216,52 +212,60 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">83</integer>
-    <integer name="config_deviceHardwareWakeKeys">64</integer>
+    <integer name="config_deviceHardwareKeys">19</integer>
 
     <!-- Control the behavior when the user long presses the home button.
             0 - Nothing
-            1 - Menu key
-            2 - Recent apps view in SystemUI
-            3 - Launch assist intent
-            4 - Voice Search
-            5 - In-app Search
+            1 - Recent apps view in SystemUI
+            2 - Launch assist intent
          This needs to match the constants in
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
-    <integer name="config_longPressOnHomeBehavior">4</integer>
+    <integer name="config_longPressOnHomeBehavior">1</integer>
+
+    <!-- Control the behavior when the user double-taps the home button.
+            0 - Nothing
+            1 - Recent apps view in SystemUI
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_doubleTapOnHomeBehavior">0</integer>
 
      <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
      <bool name="config_intrusiveNotificationLed">true</bool>
  
      <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-     <!--<bool name="config_intrusiveBatteryLed">true</bool>-->
-
-    <!-- Device supports LED flashlight -->
-    <!--<bool name="config_enableTorch">true</bool>-->
+     <bool name="config_intrusiveBatteryLed">true</bool>
 
     <!-- Allow changing button backlight brightness in Settings -->
-    <!--<integer name="config_buttonBrightnessSettingDefault">140</integer>-->
-    <!--<bool name="config_deviceHasVariableButtonBrightness">true</bool>-->
+    <integer name="config_buttonBrightnessSettingDefault">20</integer>
+    <bool name="config_deviceHasVariableButtonBrightness">true</bool>
+
+    <!--  Maximum number of supported users -->
+    <integer name="config_multiuserMaximumUsers">4</integer>
+    <!-- Whether UI for multi user should be shown -->
+    <bool name="config_enableMultiUserUI">true</bool>
 
     <!-- Software blur is too slow on this device. -->
     <bool name="config_sf_slowBlur">true</bool>
 
     <bool name="config_ui_enableFadingMarquee">true</bool>
 
-    <!--  Whether Multiuser UI should be shown -->
-    <bool name="config_enableMultiUserUI">true</bool>
-    <!--  Maximum number of supported users -->
-    <integer name="config_multiuserMaximumUsers">3</integer>
+   <!-- Screen brightness when dozing -->
+   <integer name="config_screenBrightnessDoze">20</integer>
 
-    <!-- DOZE Overlays -->
+   <!-- Dream of notifications -->
+   <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+   <!-- bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool -->
+   <!-- bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool -->
+   <bool name="config_dreamsSupported">false</bool>
+   <bool name="config_dozeAfterScreenOff">true</bool>
 
-    <!-- Screen brightness when dozing -->
-    <integer name="config_screenBrightnessDoze">35</integer>
+   <!-- Wether doze feature is enabled by default in settings. -->
+   <bool name="config_doze_enabled_by_default">false</bool>
 
-    <!-- Dream of notifications -->
-    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+   <!-- Device will display option to wake only if proximity sensor is uncovered -->
+   <bool name="config_proximityCheckOnWake">true</bool>
+   <integer name="config_proximityCheckTimeout">400</integer>
 
-    <bool name="config_dreamsSupported">true</bool>
-    <bool name="config_dozeAfterScreenOff">true</bool>
 </resources>

@@ -71,7 +71,7 @@ COMMON_GLOBAL_CFLAGS             += -DUSES_TI_MAC80211
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/htc/endeavoru
-TARGET_KERNEL_CONFIG := aicp_endeavoru_defconfig
+TARGET_KERNEL_CONFIG := slim_endeavoru_defconfig
 
 # Building wifi modules
 TARGET_MODULES_SOURCE := "kernel/htc/endeavoru/drivers/net/wireless/compat-wireless_R5.SP2.03"
@@ -132,10 +132,13 @@ BOARD_SEPOLICY_DIRS += \
 BOARD_SEPOLICY_UNION += \
 	file_contexts \
 	akmd.te \
+	hotspot.te \
 	init_shell.te \
 	kernel.te \
 	navl_server.te \
 	recovery.te \
 	uim_sysfs.te \
+	supersu.te \
+	sysinit.te \
+	system.te \
 	system_server.te \
-	vold.te \

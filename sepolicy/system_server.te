@@ -1,1 +1,4 @@
 allow system_server nav:unix_stream_socket {rw_stream_socket_perms connectto};
+
+#============= system_server ==============
+allow system_server app_data_file:file unlink;

@@ -1,0 +1,9 @@
+# allow system HOME to access asec files - fixes app2sd shortcuts
+allow system_app asec_apk_file:dir search;
+allow system_app asec_apk_file:file r_file_perms;
+
+#============= system_app ==============
+allow system_app dalvikcache_data_file:file write;
+# NOT ALLOWED # allow system_app self:capability dac_override;
+
+allow system_app shell_data_file:dir search;

@@ -5,25 +5,26 @@ PRODUCT_RELEASE_NAME := endeavoru
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common stuff.
+$(call inherit-product, vendor/slim/config/common_full_phone.mk)
 
 # Enhanced NFC
-$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
+$(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/htc/endeavoru/full_endeavoru.mk)
 
-## Device identifier. This must come after all inclusions
+# Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := endeavoru
-PRODUCT_NAME := cm_endeavoru
+PRODUCT_NAME := slim_endeavoru
 PRODUCT_BRAND := htc
 PRODUCT_MODEL := One X
 PRODUCT_MANUFACTURER := HTC
 
-#Set build fingerprint / ID / Product Name ect.
+# Set build fingerprint / ID / Product Name ect.
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=htc_europe \
+    PRODUCT_NAME=endeavoru \
     TARGET_DEVICE=endeavoru \
     BUILD_FINGERPRINT="htc/htc_europe/endeavoru:4.2.2/JDQ39/231174.2:user/release-keys" \
     PRIVATE_BUILD_DESC="4.18.401.2 CL231174 release-keys"
+
