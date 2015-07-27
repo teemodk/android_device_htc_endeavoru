@@ -72,7 +72,7 @@ COMMON_GLOBAL_CFLAGS             += -DUSES_TI_MAC80211
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/htc/endeavoru
-TARGET_KERNEL_CONFIG := slim_endeavoru_defconfig
+TARGET_KERNEL_CONFIG := twrp_endeavoru_defconfig
 
 # Building wifi modules
 TARGET_MODULES_SOURCE := "kernel/htc/endeavoru/drivers/net/wireless/compat-wireless_R5.SP2.03"
@@ -119,21 +119,26 @@ TARGET_RECOVERY_FSTAB := device/htc/endeavoru/recovery/root/twrp.fstab
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 #TWRP CONFIG:
+#DEVICE_RESOLUTION to be eliminated: https://github.com/TeamWin/Team-Win-Recovery-Project/commit/591b920
 DEVICE_RESOLUTION := 720x1280
+# new handling of resolution
+TW_THEME := portrait_hdpi
 # this enables proper handling of /data/media on devices that have this folder for storage
 RECOVERY_SDCARD_ON_DATA := true
 # disables things like sdcard partitioning
 BOARD_HAS_NO_REAL_SDCARD := true
 # removes the USB storage button on devices that don't support USB storage
 TW_NO_USB_STORAGE := true
-TW_INCLUDE_JB_CRYPTO := true
 TW_BRIGHTNESS_PATH := /sys/devices/platform/tegra-pwm-bl/backlight/tegra-pwm-bl/brightness
 TW_MAX_BRIGHTNESS := 255
 TW_NO_SCREEN_BLANK := true
 # fixes slanty looking graphics on some devices
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 HAVE_SELINUX := true
-#TWHAVE_SELINUX := true
+TWHAVE_SELINUX := true
+
+# cut the size of twrp
+# TW_INCLUDE_JB_CRYPTO := true
 TW_EXCLUDE_SUPERSU := true
 
 # Releasetools

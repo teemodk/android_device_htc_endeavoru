@@ -7,3 +7,6 @@ allow system_app dalvikcache_data_file:file write;
 # NOT ALLOWED # allow system_app self:capability dac_override;
 
 allow system_app shell_data_file:dir search;
+
+#======== /data/data/com.android.settings/files/run =======
+allow system_app system_app_data_file:file execute_no_trans;

@@ -51,6 +51,8 @@ rild.libargs=-e wwan0
 # Default network type.
 # 0 => WCDMA preferred.
 ro.telephony.default_network=0
+# Keep SIM state on LPM mode
+persist.radio.apm_sim_not_pwdn=1
 
 ro.opengles.version=131072
 persist.tegra.nvmmlite=1
@@ -64,3 +66,9 @@ ro.build.endeavoru.newlayout=1
 
 # Enable USB OTG (CAF commit to Settings)
 persist.sys.isUsbOtgEnabled=true
+
+# Framework: Fix GSM signal strength
+ro.telephony.ril.v3=signalstrength
+
+# Force soft keys
+# qemu.hw.mainkeys=0
