@@ -136,9 +136,10 @@ TW_NO_SCREEN_BLANK := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 HAVE_SELINUX := true
 TWHAVE_SELINUX := true
+
 # cut the size of twrp
 # TW_INCLUDE_JB_CRYPTO := true
-TW_EXCLUDE_SUPERSU := true
+# TW_EXCLUDE_SUPERSU := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru
