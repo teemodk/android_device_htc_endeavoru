@@ -70,3 +70,10 @@ ro.telephony.ril.v3=signalstrength
 
 # Force soft keys
 # qemu.hw.mainkeys=0
+
+# Speed Up compilation
+dalvik.vm.execution-mode=init:jit
+# ART
+dalvik.vm.dex2oat-filter=interpret-only
+dalvik.vm.dex2oat-flags=--no-watch-dog
+dalvik.vm.image-dex2oat-filter=speed

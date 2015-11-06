@@ -1,2 +1,2 @@
 #============= zygote ==============
-allow zygote sudaemon:fd use;
+# allow zygote sudaemon:fd use;

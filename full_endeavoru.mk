@@ -25,8 +25,14 @@ $(call inherit-product, device/htc/endeavoru/endeavoru.mk)
 #$(call inherit-product, device/sample/products/backup_overlay.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
+PRODUCT_PROPERTY_OVERRIDES := \
+net.dns1=8.8.8.8 \
+net.dns2=8.8.4.4
+
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := full_endeavoru
 PRODUCT_DEVICE := endeavoru
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := Full AOSP on EndeavorU
+PRODUCT_MODEL := AOSP on EndeavorU
+PRODUCT_MANUFACTURER := HTC
+# PRODUCT_RESTRICT_VENDOR_FILES := owner path | true | false

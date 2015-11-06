@@ -148,16 +148,3 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/htc/endeavoru
 BOARD_SEPOLICY_DIRS += \
     device/htc/endeavoru/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-	file_contexts \
-	akmd.te \
-	hotspot.te \
-	init_shell.te \
-	kernel.te \
-	navl_server.te \
-	recovery.te \
-	uim_sysfs.te \
-	supersu.te \
-	sysinit.te \
-	system.te \
-	system_server.te \
